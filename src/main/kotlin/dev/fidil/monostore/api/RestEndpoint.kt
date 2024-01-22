@@ -13,6 +13,7 @@ import org.axonframework.messaging.responsetypes.ResponseTypes
 import org.axonframework.queryhandling.QueryGateway
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import java.util.*
 import java.util.concurrent.CompletableFuture
 
@@ -41,9 +42,9 @@ class RestEndpoint(private val commandGateway: CommandGateway, private val query
 
     @GetMapping("/products")
     fun getProducts(@RequestParam(required = false) state: ProductState = ProductState.PUBLISHED): Flux<ProductView> {
-        return Flux.fromIterable(queryGateway.query(GetProducts(state), ResponseTypes.multipleInstancesOf(ProductView::class.java)).get())
+        val query = queryGateway.query(GetProducts(state), ResponseTypes.multipleInstancesOf(ProductView::class.java))
+        return Flux.fromStream(query.join().stream())
     }
-
     @GetMapping("/products/future")
     fun getProductsFuture(@RequestParam(required = false) state: ProductState = ProductState.PUBLISHED): CompletableFuture<List<ProductView>> {
         return queryGateway.query(GetProducts(state), ResponseTypes.multipleInstancesOf(ProductView::class.java))
