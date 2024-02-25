@@ -25,25 +25,10 @@ class Account() {
         )
     }
 
-    @CommandHandler
-    fun handle(command: UpdateEmailAddress) {
-        apply(
-            EmailAddressUpdated(
-                command.accountId,
-                command.email
-            )
-        )
-    }
-
     @EventSourcingHandler
     fun on(event: AccountCreated) {
         id = event.accountId
         name = event.name
-        email = event.email
-    }
-
-    @EventSourcingHandler
-    fun on(event: EmailAddressUpdated) {
         email = event.email
     }
 }

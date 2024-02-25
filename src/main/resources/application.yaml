@@ -1,10 +1,10 @@
 axon:
   axonserver:
-    servers: axonserver.cloud.axoniq.io:443
+    servers: ${AXON_HOST}
     keep-alive-time: 0
     ssl-enabled: true
-    context: justone@monostore
-    token: C2ThH641kMAT0GEKVh3V
+    context: ${AXON_CONTEXT}
+    token: ${AXON_TOKEN}
   serializer:
     messages: jackson
     events: jackson
@@ -19,4 +19,4 @@ axon:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://mikey:095nUVhFtlJHHQlX@dev.yca3jbx.mongodb.net/monostore
+      uri: ${MONGO_URI}

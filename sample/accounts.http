@@ -1,0 +1,25 @@
+POST http://localhost:8080/accounts/create
+Content-Type: application/json
+
+{
+  "name": "Dave Nothere",
+  "email": "dave.nothere@nothere.com"
+}
+
+###
+POST http://localhost:8080/accounts/create
+Content-Type: application/json
+
+{
+  "name": "Chick Henz",
+  "email": "chick@henz.com"
+}
+
+###
+POST http://localhost:8080/accounts/create
+Content-Type: application/json
+
+{
+  "name": "Bob Andweive",
+  "email": "bob.andweive@none.com"
+}

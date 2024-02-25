@@ -14,13 +14,6 @@ class AccountEventHandler(private val repository: AccountRepository) {
         repository.save(AccountDocument(event.accountId, event.name, event.email))
     }
 
-    @EventHandler
-    fun on(event: EmailAddressUpdated) {
-        repository.findById(event.accountId).ifPresent {
-            it.email = event.email
-            repository.save(it)
-        }
-    }
 }
 
 @Component

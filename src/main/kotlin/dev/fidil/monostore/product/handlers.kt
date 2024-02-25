@@ -3,14 +3,15 @@ package dev.fidil.monostore.product
 import org.axonframework.config.ProcessingGroup
 import org.axonframework.eventhandling.EventHandler
 import org.axonframework.queryhandling.QueryHandler
+import org.axonframework.queryhandling.QueryUpdateEmitter
 import org.springframework.stereotype.Component
 
 @Component
 @ProcessingGroup("products")
-class ProductEventHandler(private val productRepository: ProductRepository) {
+class ProductEventHandler(private val productRepository: ProductRepository, private val queryUpdateEmitter: QueryUpdateEmitter) {
 
     @EventHandler
-    fun handle(event: ProductCreated) {
+    fun handle(event: ProductAddedToStock) {
         productRepository.save(
             ProductDocument(
                 id = event.accountId,
@@ -19,25 +20,9 @@ class ProductEventHandler(private val productRepository: ProductRepository) {
                 price = event.price,
                 inStock = event.inStock,
                 imageUrl = event.imageUrl,
-                state = ProductState.DRAFT
+                state = ProductState.PENDING
             )
         )
-    }
-
-    @EventHandler
-    fun handle(event: ProductPublished) {
-        productRepository.findById(event.productId).ifPresent {
-            it.state = ProductState.PUBLISHED
-            productRepository.save(it)
-        }
-    }
-
-    @EventHandler
-    fun handle(event: ProductSoldOut) {
-        productRepository.findById(event.productId).ifPresent {
-            it.state = ProductState.SOLD_OUT
-            productRepository.save(it)
-        }
     }
 }
 
@@ -46,10 +31,10 @@ class ProductEventHandler(private val productRepository: ProductRepository) {
 class ProductQueryHandler(private val productRepository: ProductRepository) {
 
     @QueryHandler
-    fun handle(query: GetProducts): List<ProductView> {
+    fun handle(query: GetProducts): List<ProductAdminView> {
         return productRepository.findByState(query.state)
             .map { productDocument ->
-                ProductView(
+                ProductAdminView(
                     id = productDocument.id,
                     name = productDocument.name,
                     description = productDocument.description,

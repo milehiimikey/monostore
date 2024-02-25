@@ -1,0 +1,58 @@
+POST http://localhost:8080/products/create
+Content-Type: application/json
+
+{
+  "name": "Product 1",
+  "description": "Description of product 1",
+  "price": {
+    "amount": 100,
+    "currency": "USD"
+  },
+  "inStock": 200,
+  "imageUrl": "http://example.com/product1.jpg"
+}
+
+###
+POST http://localhost:8080/products/create
+Content-Type: application/json
+
+{
+  "name": "Product 2",
+  "description": "Description of product 2",
+  "price": {
+    "amount": 1000,
+    "currency": "USD"
+  },
+  "inStock": 2,
+  "imageUrl": "http://example.com/product2.jpg"
+}
+
+###
+POST http://localhost:8080/products/create
+Content-Type: application/json
+
+{
+  "name": "Product 3",
+  "description": "Description of product 3",
+  "price": {
+    "amount": 10,
+    "currency": "USD"
+  },
+  "inStock": 30,
+  "imageUrl": "http://example.com/product3.jpg"
+}
+
+###
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Product 4",
+  "description": "Description of product 4",
+  "price": {
+    "amount": 15.99,
+    "currency": "USD"
+  },
+  "inStock": 15,
+  "imageUrl": "http://example.com/product4.jpg"
+}

@@ -7,8 +7,3 @@ data class AccountCreated(
     val name: String,
     val email: String,
 )
-
-data class EmailAddressUpdated(
-    val accountId: UUID,
-    val email: String,
-)

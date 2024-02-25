@@ -28,7 +28,6 @@ dependencies {
     implementation("org.axonframework.extensions.mongo:axon-mongo-spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -40,7 +39,7 @@ dependencies {
 dependencyManagement {
     imports {
         // https://mvnrepository.com/artifact/org.axonframework/axon-bom
-        mavenBom("org.axonframework:axon-bom:4.9.2")
+        mavenBom("org.axonframework:axon-bom:4.9.3")
 
     }
 }
