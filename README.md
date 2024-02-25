@@ -19,6 +19,11 @@ Once you have set these environment variables, you can run the application using
 ./gradlew bootRun
 ```
 
+Once the application is running, checkout the HTTP Requests found in the [samples](./sample) directory. These will 
+create a few accounts and products.
+
+**Note: If you use IntelliJ these are HttpRequests and you can run them all at once.**
+
 ## Application Design
 
 The design of the application uses Event Modeling and the implementation is done across branches to illustrate one possible way to implement directly from the Event Model. 
