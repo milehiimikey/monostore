@@ -1,5 +1,6 @@
 package dev.fidil.monostore.product
 
 enum class ProductState {
-   PENDING
+   PENDING,
+    ACTIVE
 }

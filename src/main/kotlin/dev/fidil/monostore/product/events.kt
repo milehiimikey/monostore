@@ -12,3 +12,5 @@ data class ProductAddedToStock(
     val imageUrl: String,
     val state: ProductState
 )
+
+data class ProductActivated(val productId: UUID)

@@ -24,4 +24,9 @@ data class StoreFrontView(
     val inStock: Boolean
 )
 
+data class StoreFrontProductUpdated(
+    val id: UUID,
+    val inStock: Boolean
+)
+
 data class StoreFrontPage(val page: Page<StoreFrontView>)

@@ -56,3 +56,6 @@ Content-Type: application/json
   "inStock": 15,
   "imageUrl": "http://example.com/product4.jpg"
 }
+
+###
+GET http://localhost:8080/products/admin
