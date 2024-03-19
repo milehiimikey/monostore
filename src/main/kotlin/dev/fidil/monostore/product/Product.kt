@@ -36,6 +36,11 @@ class Product() {
         )
     }
 
+    @CommandHandler
+    fun activate(command: ActivateProduct) {
+        AggregateLifecycle.apply(ProductActivated(id))
+    }
+
     @EventSourcingHandler
     fun on(event: ProductAddedToStock) {
         id = event.accountId
@@ -47,4 +52,8 @@ class Product() {
         state = event.state
     }
 
+    @EventSourcingHandler
+    fun on(event: ProductActivated) {
+        state = ProductState.ACTIVE
+    }
 }
